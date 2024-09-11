@@ -1,4 +1,3 @@
 
-L	java:S106"+Replace this use of System.out by a logger.(Œ´ñËüÿÿÿÿ8½¬šõ2
-L	java:S106""+Replace this use of System.out by a logger.(Øƒˆ¤øÿÿÿÿ8À¬šõ2
-L	java:S106*"+Replace this use of System.out by a logger.(Œ´ñËüÿÿÿÿ8Á¬šõ2
+á
+java:S6548"˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(å¼À¶ÿÿÿÿÿ8¨›íõ2J$e26088dd-7c94-4cbf-82f8-44eb081ce639

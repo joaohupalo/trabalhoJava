@@ -1,61 +1,51 @@
 package model;
-
+import services.Emprestavel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Membro {
+public abstract class Membro implements Emprestavel {
     private String nome;
     private int idMembro;
     private List<Livro> historicoEmprestimos;
 
-    // Construtor padrão
-    public Membro() {
-        this.historicoEmprestimos = new ArrayList<>();
-    }
-
-    // Construtor com argumentos
     public Membro(String nome, int idMembro) {
         this.nome = nome;
         this.idMembro = idMembro;
         this.historicoEmprestimos = new ArrayList<>();
     }
 
-    // Getters e Setters
     public String getNome() {
         return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public int getIdMembro() {
         return idMembro;
     }
 
-    public void setIdMembro(int idMembro) {
-        this.idMembro = idMembro;
-    }
-
     public List<Livro> getHistoricoEmprestimos() {
         return historicoEmprestimos;
     }
 
-    // Método para adicionar livro ao histórico de empréstimos
-    public void registrarEmprestimo(Livro livro) {
+    @Override
+    public void emprestarLivro(Livro livro) throws Exception {
+        if (!livro.isDisponivel()) {
+            throw new Exception("Livro indisponível.");
+        }
         historicoEmprestimos.add(livro);
-        livro.emprestarLivro();
-    }
-
-    // Método para registrar a devolução do livro
-    public void registrarDevolucao(Livro livro) {
-        historicoEmprestimos.remove(livro);
-        livro.devolverLivro();
+        livro.emprestar(java.time.LocalDate.now());
+        System.out.println(nome + " emprestou o livro: " + livro.getTitulo());
     }
 
     @Override
-    public String toString() {
-        return "Membro: " + nome + ", ID: " + idMembro;
+    public void devolverLivro(Livro livro) throws Exception {
+        if (!historicoEmprestimos.contains(livro)) {
+            throw new Exception("Este livro não foi emprestado por este membro.");
+        }
+        historicoEmprestimos.remove(livro);
+        livro.devolver();
+        System.out.println(nome + " devolveu o livro: " + livro.getTitulo());
     }
+
+    public abstract String getDetalhes();
 }

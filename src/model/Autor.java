@@ -1,5 +1,7 @@
 package model;
 
+import java.time.LocalDate;
+
 public class Autor {
     private String nome;
     private String nacionalidade;
@@ -14,6 +16,7 @@ public class Autor {
         this.nacionalidade = nacionalidade;
         this.dataNascimento = dataNascimento;
     }
+
 
     // Getters e Setters
     public String getNome() {

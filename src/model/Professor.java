@@ -8,17 +8,12 @@ public class Professor extends Membro {
         this.departamento = departamento;
     }
 
-    // Getter e Setter
     public String getDepartamento() {
         return departamento;
     }
 
-    public void setDepartamento(String departamento) {
-        this.departamento = departamento;
-    }
-
     @Override
-    public String toString() {
-        return super.toString() + ", Departamento: " + departamento;
+    public String getDetalhes() {
+        return "Professor do departamento: " + departamento;
     }
 }

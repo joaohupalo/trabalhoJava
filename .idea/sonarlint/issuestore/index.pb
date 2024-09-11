@@ -19,3 +19,13 @@ O
 src/model/ENUM/EstadoLivro.java,3\b\3b3a0078201c8a2c010ec817d7b1e8f3ebef12ec
 I
 src/model/Biblioteca.java,9\8\98e7301a1dcaa6234e38105385adfc048e9774d7
+S
+#src/model/services/Emprestavel.java,1\4\143573b97940e6c7ca87865af73bf0515b40ffb2
+H
+src/ENUM/TipoMembro.java,4\1\41f3ac6f1bdc2e680f354c8231202401af257d69
+M
+src/services/Emprestavel.java,f\5\f5f6130a2a080c82e27f9e2a2dd06909a49fb7a3
+N
+src/factory/MembroFactory.java,1\d\1d321fb8c34bdcdb3f69c5aebf362c63f6b20064
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d

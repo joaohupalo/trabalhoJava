@@ -1,6 +1,5 @@
 
-’
-java:S11925"JDefine a constant instead of duplicating this literal "O livro '" 3 times.(Š¿™òşÿÿÿÿ8³ÿˆõ2J$d8d5e899-8329-498b-bd1d-571b0bdb4cfe
-r	java:S1065"+Replace this use of System.out by a logger.(Š¿™òşÿÿÿÿ8½ÿˆõ2J$b94bdfd0-c3b2-41ee-b528-6b0c065ffe72
-r	java:S1067"+Replace this use of System.out by a logger.(¢×üöúÿÿÿÿ8¾ÿˆõ2J$f3aff956-f238-4722-8801-99ecc7ac630e
-m	java:S106="+Replace this use of System.out by a logger.(–‡‡Ô8¾ÿˆõ2J$b71236db-fb31-4c63-8fb5-428a3ba857bd
+ˆ	java:S1120"FDefine and throw a dedicated exception instead of using a generic one.(Ö¥8ìÈÜõ2J$a9364aa9-afce-4d9b-add2-21a443102341
+	java:S112."FDefine and throw a dedicated exception instead of using a generic one.(ÕšúÌûÿÿÿÿ8ìÈÜõ2J$e070f24a-d3c7-4fc5-b2df-f15a65860373
+ˆ	java:S1129"FDefine and throw a dedicated exception instead of using a generic one.(‘ƒÅÅ8ìÈÜõ2J$1faf100b-46d2-4f8e-b381-d1189bb07e04
+	java:S1127"FDefine and throw a dedicated exception instead of using a generic one.(‹şÙŠÿÿÿÿÿ8ìÈÜõ2J$215e4235-46d4-4967-9847-ac166968c72b

@@ -1,5 +1,7 @@
 
-|
-java:S5993"9Change the visibility of this constructor to "protected".(ëÛë×8ëÖõ2J$f3b47bad-8d6b-4f33-a312-5557c88b70ac
+‡	java:S112!"FDefine and throw a dedicated exception instead of using a generic one.(™×Ì)8«ÁŞõ2J$481bbf56-aa37-499b-a098-6bbbc8b71f4a
+	java:S112+"FDefine and throw a dedicated exception instead of using a generic one.(ÆËÖøÿÿÿÿ8¬ÁŞõ2J$bcda6a08-c263-4d1f-b127-8bf20ea4c60d
 
-java:S5993"9Change the visibility of this constructor to "protected".(ûç–Àıÿÿÿÿ8ëÖõ2J$16f1d89b-3744-40f2-9148-182defe8277e
+java:S5993"9Change the visibility of this constructor to "protected".(ûç–Àıÿÿÿÿ8°ÁŞõ2J$1b0ca510-74f1-4199-af2a-b655165e8484
+r	java:S106%"+Replace this use of System.out by a logger.(ö²¸úÿÿÿÿ8¸ÁŞõ2J$5a587734-bde1-4415-9e6c-ef766648ef71
+r	java:S106/"+Replace this use of System.out by a logger.(¦ìÎñıÿÿÿÿ8¹ÁŞõ2J$93f86883-027c-439e-b2cc-5031d01b443a

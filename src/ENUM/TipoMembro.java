@@ -1,4 +1,4 @@
-package model.ENUM;
+package ENUM;
 
 public enum TipoMembro {
     ESTUDANTE,

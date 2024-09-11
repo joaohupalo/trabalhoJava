@@ -1,22 +1,35 @@
 
-L	java:S106"+Replace this use of System.out by a logger.(ÀÍ’öùÿÿÿÿ8£ˆœõ2
-L	java:S106"+Replace this use of System.out by a logger.(Úò¶Šüÿÿÿÿ8£ˆœõ2
-L	java:S106"+Replace this use of System.out by a logger.(øÑßÁşÿÿÿÿ8£ˆœõ2
-F	java:S106"+Replace this use of System.out by a logger.(¡Û¯]8£ˆœõ2
-L	java:S106"+Replace this use of System.out by a logger.(Å»µùÿÿÿÿ8£ˆœõ2
-F	java:S106"+Replace this use of System.out by a logger.(ı‘·?8¤ˆœõ2
-G	java:S106"+Replace this use of System.out by a logger.(«Àšİ8¤ˆœõ2
-G	java:S106"+Replace this use of System.out by a logger.(ù©Ÿ”8¤ˆœõ2
-L	java:S106"+Replace this use of System.out by a logger.(¿’ëÂøÿÿÿÿ8¥ˆœõ2
-L	java:S106"+Replace this use of System.out by a logger.(ãõËÚúÿÿÿÿ8¥ˆœõ2
-G	java:S106"+Replace this use of System.out by a logger.(–ª ö8¥ˆœõ2
-G	java:S106""+Replace this use of System.out by a logger.(ÛŒú‘8¥ˆœõ2
-F	java:S106'"+Replace this use of System.out by a logger.(Óá•%8§ˆœõ2
-G	java:S1061"+Replace this use of System.out by a logger.(ë…üö8§ˆœõ2
-G	java:S1063"+Replace this use of System.out by a logger.(‹ËÖ8§ˆœõ2
-L	java:S1067"+Replace this use of System.out by a logger.(ëµ®‚üÿÿÿÿ8¨ˆœõ2
-L	java:S106<"+Replace this use of System.out by a logger.(ÿÖå×ÿÿÿÿÿ8¨ˆœõ2
-G	java:S106A"+Replace this use of System.out by a logger.(Ì—8©ˆœõ2
-L	java:S106F"+Replace this use of System.out by a logger.(•ü³˜úÿÿÿÿ8©ˆœõ2
-L	java:S106P"+Replace this use of System.out by a logger.(şÿ›üÿÿÿÿ8©ˆœõ2
-L	java:S106U"+Replace this use of System.out by a logger.(÷ÊóËøÿÿÿÿ8ªˆœõ2
+l
+java:S11928"ODefine a constant instead of duplicating this literal "ID do Membro: " 3 times.(‹ËÖ8äâ…ö2
+L	java:S106"+Replace this use of System.out by a logger.(ÀÍ’öùÿÿÿÿ8óâ…ö2
+L	java:S106"+Replace this use of System.out by a logger.(Úò¶Šüÿÿÿÿ8ôâ…ö2
+L	java:S106"+Replace this use of System.out by a logger.(øÑßÁşÿÿÿÿ8ôâ…ö2
+F	java:S106"+Replace this use of System.out by a logger.(¡Û¯]8ôâ…ö2
+L	java:S106"+Replace this use of System.out by a logger.(Å»µùÿÿÿÿ8õâ…ö2
+G	java:S106"+Replace this use of System.out by a logger.(€¡‘“8õâ…ö2
+L	java:S106"+Replace this use of System.out by a logger.(­£¦ÿÿÿÿÿ8õâ…ö2
+G	java:S106"+Replace this use of System.out by a logger.(úì8õâ…ö2
+G	java:S106"+Replace this use of System.out by a logger.(«Àšİ8õâ…ö2
+G	java:S106"+Replace this use of System.out by a logger.(ù©Ÿ”8öâ…ö2
+L	java:S106"+Replace this use of System.out by a logger.(¿’ëÂøÿÿÿÿ8øâ…ö2
+L	java:S106!"+Replace this use of System.out by a logger.(ãõËÚúÿÿÿÿ8øâ…ö2
+G	java:S106#"+Replace this use of System.out by a logger.(çºİ8øâ…ö2
+G	java:S106'"+Replace this use of System.out by a logger.(ÛŒú‘8øâ…ö2
+F	java:S106,"+Replace this use of System.out by a logger.(Óá•%8ƒã…ö2
+L	java:S1061"+Replace this use of System.out by a logger.(ËÇºÍúÿÿÿÿ8„ã…ö2
+G	java:S1066"+Replace this use of System.out by a logger.(ë…üö8„ã…ö2
+G	java:S1068"+Replace this use of System.out by a logger.(‹ËÖ8…ã…ö2
+L	java:S106<"+Replace this use of System.out by a logger.(ëµ®‚üÿÿÿÿ8†ã…ö2
+L	java:S106A"+Replace this use of System.out by a logger.(ÿÖå×ÿÿÿÿÿ8‡ã…ö2
+G	java:S106F"+Replace this use of System.out by a logger.(Ì—8‡ã…ö2
+L	java:S106K"+Replace this use of System.out by a logger.(•ü³˜úÿÿÿÿ8“ã…ö2
+I
+java:S1602P",Remove useless curly braces around statement(–Àïè8•ã…ö2
+F	java:S106Q"+Replace this use of System.out by a logger.(Œµœ_8•ã…ö2
+G	java:S106W"+Replace this use of System.out by a logger.(‹ËÖ8–ã…ö2
+G	java:S106^"+Replace this use of System.out by a logger.(ô‹Ö8˜ã…ö2
+G	java:S106i"+Replace this use of System.out by a logger.(‹ËÖ8¢ã…ö2
+G	java:S106p"+Replace this use of System.out by a logger.(ô‹Ö8¤ã…ö2
+L	java:S106z"+Replace this use of System.out by a logger.(şÿ›üÿÿÿÿ8¥ã…ö2
+L	java:S106"+Replace this use of System.out by a logger.(÷ÊóËøÿÿÿÿ8¦ã…ö2
+G	java:S106‚"+Replace this use of System.out by a logger.(ı—†8§ã…ö2

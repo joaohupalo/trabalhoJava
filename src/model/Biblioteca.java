@@ -3,44 +3,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Biblioteca {
+    private static Biblioteca instancia;
     private List<Livro> livros;
     private List<Membro> membros;
 
-    public Biblioteca() {
+    private Biblioteca() {
         livros = new ArrayList<>();
         membros = new ArrayList<>();
     }
 
-    // Adicionar livro à biblioteca
+    public static Biblioteca getInstancia() {
+        if (instancia == null) {
+            instancia = new Biblioteca();
+        }
+        return instancia;
+    }
+
     public void adicionarLivro(Livro livro) {
         livros.add(livro);
     }
 
-    // Listar todos os livros
-    public void listarLivros() {
-        for (Livro livro : livros) {
-            System.out.println(livro);
-        }
-    }
-
-    // Adicionar membro à biblioteca
     public void adicionarMembro(Membro membro) {
         membros.add(membro);
     }
 
-    // Listar todos os membros
-    public void listarMembros() {
-        for (Membro membro : membros) {
-            System.out.println(membro);
-        }
+    public List<Livro> listarLivros() {
+        return livros;
     }
 
-    // Listar livros de um autor específico
-    public void listarLivrosPorAutor(Autor autor) {
-        for (Livro livro : livros) {
-            if (livro.getAutor().equals(autor)) {
-                System.out.println(livro);
-            }
-        }
+    public List<Membro> listarMembros() {
+        return membros;
     }
 }
