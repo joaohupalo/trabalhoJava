@@ -1,6 +1,8 @@
 package model;
 
 
+import model.ENUM.TipoMembro;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,6 +54,18 @@ public abstract class Membro {
     public void registrarDevolucao(Livro livro) {
         historicoEmprestimos.remove(livro);
         livro.devolverLivro();
+    }
+
+    // Função estática para criar membros usando enum TipoMembro
+    public static Membro criarMembro(String nome, int id, TipoMembro tipo, String atributoEspecifico) {
+        switch (tipo) {
+            case ESTUDANTE:
+                return new Estudante(nome, id, atributoEspecifico); // atributoEspecifico será o curso
+            case PROFESSOR:
+                return new Professor(nome, id, atributoEspecifico); // atributoEspecifico será o departamento
+            default:
+                throw new IllegalArgumentException("Tipo de Membro desconhecido: " + tipo);
+        }
     }
 
     @Override

@@ -1,11 +1,16 @@
 package view;
 import model.*;
+import model.ENUM.TipoMembro;
+
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Biblioteca biblioteca = new Biblioteca();
         Scanner scanner = new Scanner(System.in);
+
+        // Povoar a biblioteca antes de iniciar a interação com o usuário
+        povoarBiblioteca(biblioteca);
 
         while (true) {
             System.out.println("\n--- Sistema de Biblioteca ---");
@@ -85,6 +90,30 @@ public class Main {
                     System.out.println("Opção inválida! Tente novamente.");
             }
         }
+    }
+    // Função para pré-povoar a biblioteca com dados iniciais
+    public static void povoarBiblioteca(Biblioteca biblioteca) {
+        // Criando autores
+        Autor autor1 = new Autor("George Orwell", "Britânico", "25-06-1903");
+        Autor autor2 = new Autor("J.K. Rowling", "Britânica", "31-07-1965");
+
+        // Criando livros
+        Livro livro1 = new Livro("1984", autor1, "123-456-789");
+        Livro livro2 = new Livro("Harry Potter e a Pedra Filosofal", autor2, "987-654-321");
+
+        // Adicionando livros à biblioteca
+        biblioteca.adicionarLivro(livro1);
+        biblioteca.adicionarLivro(livro2);
+
+        // Criando membros (Estudantes e Professores)
+        Membro estudante1 = Membro.criarMembro("Alice", 1, TipoMembro.ESTUDANTE, "Ciência da Computação");
+        Membro professor1 = Membro.criarMembro("Dr. João", 2, TipoMembro.PROFESSOR, "Física");
+
+        // Adicionando membros à biblioteca
+        biblioteca.adicionarMembro(estudante1);
+        biblioteca.adicionarMembro(professor1);
+
+        System.out.println("Biblioteca populada com dados iniciais!");
     }
 }
 

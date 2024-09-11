@@ -19,3 +19,8 @@ O
 src/model/ENUM/EstadoLivro.java,3\b\3b3a0078201c8a2c010ec817d7b1e8f3ebef12ec
 I
 src/model/Biblioteca.java,9\8\98e7301a1dcaa6234e38105385adfc048e9774d7
+:
+
+.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
+N
+src/model/ENUM/TipoMembro.java,a\a\aa1831ec4e1876b32f2b7254810e4997393eafde

@@ -6,9 +6,30 @@ public class Biblioteca {
     private List<Livro> livros;
     private List<Membro> membros;
 
+    public Biblioteca(List<Livro> livros, List<Membro> membros) {
+        this.livros = livros;
+        this.membros = membros;
+    }
+
     public Biblioteca() {
         livros = new ArrayList<>();
         membros = new ArrayList<>();
+    }
+
+    public List<Livro> getLivros() {
+        return livros;
+    }
+
+    public void setLivros(List<Livro> livros) {
+        this.livros = livros;
+    }
+
+    public List<Membro> getMembros() {
+        return membros;
+    }
+
+    public void setMembros(List<Membro> membros) {
+        this.membros = membros;
     }
 
     // Adicionar livro à biblioteca

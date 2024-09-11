@@ -6,6 +6,8 @@ public class Emprestimo {
     private Livro livro;
     private Date dataEmprestimo;
 
+    public Emprestimo() {}
+
     public Emprestimo(Membro membro, Livro livro, Date dataEmprestimo) {
         this.membro = membro;
         this.livro = livro;
