@@ -1,4 +1,5 @@
 
-˜	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Á¯¬™üÿÿÿÿ8×¢Šóš2J$f53ac2aa-1754-489d-bd5b-4ee5b2ce4b62
-˜	java:S117="QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(À²Æäÿÿÿÿÿ8×¢Šóš2J$5a741c21-5b52-430e-bad0-62b53da6e0bd
-•	java:S116"NRename this field "CPF" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(êò˜Îúÿÿÿÿ8Ü¢Šóš2J$4965e921-f443-4357-8973-82d2d330709b
+|
+java:S5993"9Change the visibility of this constructor to "protected".(ëÛë×8ëÖõ2J$f3b47bad-8d6b-4f33-a312-5557c88b70ac
+
+java:S5993"9Change the visibility of this constructor to "protected".(ûç–Àıÿÿÿÿ8ëÖõ2J$16f1d89b-3744-40f2-9148-182defe8277e

@@ -1,64 +1,90 @@
 package view;
-
 import model.*;
 import java.util.Scanner;
 
-
 public class Main {
-    private static Scanner scanner = new Scanner(System.in);
-    private static Biblioteca biblioteca = new Biblioteca();
-
     public static void main(String[] args) {
-        inicializarDados();
+        Biblioteca biblioteca = new Biblioteca();
+        Scanner scanner = new Scanner(System.in);
 
-        int opcao = 0;
-        do {
-            System.out.println("==== Sistema de Biblioteca ====");
-            System.out.println("1. Adicionar novo livro");
-            System.out.println("2. Adicionar novo estudante");
-            System.out.println("3. Adicionar novo professor");
-            System.out.println("4. Emprestar livro");
-            System.out.println("5. Devolver livro");
-            System.out.println("6. Verificar disponibilidade de livro");
-            System.out.println("7. Listar livros disponíveis");
-            System.out.println("8. Listar todos os livros");
-            System.out.println("9. Sair");
+        while (true) {
+            System.out.println("\n--- Sistema de Biblioteca ---");
+            System.out.println("1. Adicionar Livro");
+            System.out.println("2. Listar Livros");
+            System.out.println("3. Adicionar Membro");
+            System.out.println("4. Listar Membros");
+            System.out.println("5. Sair");
             System.out.print("Escolha uma opção: ");
-            opcao = scanner.nextInt();
-            scanner.nextLine(); // Limpar o buffer
+            int opcao = scanner.nextInt();
+            scanner.nextLine(); // Consumir nova linha
 
             switch (opcao) {
                 case 1:
-                    adicionarNovoLivro();
-                    break;
-                case 2:
-                    adicionarNovoEstudante();
-                    break;
-                case 3:
-                    adicionarNovoProfessor();
-                    break;
-                case 4:
-                    emprestarLivro();
-                    break;
-                case 5:
-                    devolverLivro();
-                    break;
-                case 6:
-                    verificarDisponibilidade();
-                    break;
-                case 7:
-                    listarLivrosDisponiveis();
-                    break;
-                case 8:
-                    listarTodosLivros();
-                    break;
-                case 9:
-                    System.out.println("Encerrando o sistema...");
-                    break;
-                default:
-                    System.out.println("Opção inválida. Tente novamente.");
-            }
-        } while (opcao != 9);
-    }
+                    // Adicionar livro
+                    System.out.print("Título: ");
+                    String titulo = scanner.nextLine();
+                    System.out.print("Nome do Autor: ");
+                    String nomeAutor = scanner.nextLine();
+                    System.out.print("Nacionalidade do Autor: ");
+                    String nacionalidade = scanner.nextLine();
+                    System.out.print("Data de Nascimento do Autor: ");
+                    String dataNascimento = scanner.nextLine();
+                    Autor autor = new Autor(nomeAutor, nacionalidade, dataNascimento);
 
+                    System.out.print("ISBN: ");
+                    String isbn = scanner.nextLine();
+
+                    Livro livro = new Livro(titulo, autor, isbn);
+                    biblioteca.adicionarLivro(livro);
+                    System.out.println("Livro adicionado com sucesso!");
+                    break;
+
+                case 2:
+                    // Listar livros
+                    biblioteca.listarLivros();
+                    break;
+
+                case 3:
+                    // Adicionar membro
+                    System.out.print("Nome do Membro: ");
+                    String nome = scanner.nextLine();
+                    System.out.print("ID do Membro: ");
+                    int idMembro = scanner.nextInt();
+                    scanner.nextLine(); // Consumir nova linha
+
+                    System.out.println("Tipo de Membro: (1) Estudante, (2) Professor");
+                    int tipo = scanner.nextInt();
+                    scanner.nextLine(); // Consumir nova linha
+
+                    if (tipo == 1) {
+                        System.out.print("Curso: ");
+                        String curso = scanner.nextLine();
+                        Estudante estudante = new Estudante(nome, idMembro, curso);
+                        biblioteca.adicionarMembro(estudante);
+                    } else if (tipo == 2) {
+                        System.out.print("Departamento: ");
+                        String departamento = scanner.nextLine();
+                        Professor professor = new Professor(nome, idMembro, departamento);
+                        biblioteca.adicionarMembro(professor);
+                    }
+                    System.out.println("Membro adicionado com sucesso!");
+                    break;
+
+                case 4:
+                    // Listar membros
+                    biblioteca.listarMembros();
+                    break;
+
+                case 5:
+                    // Sair do sistema
+                    System.out.println("Saindo do sistema...");
+                    System.exit(0);
+                    break;
+
+                default:
+                    System.out.println("Opção inválida! Tente novamente.");
+            }
+        }
+    }
 }
+

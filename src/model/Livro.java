@@ -1,59 +1,29 @@
 package model;
 
-import model.ENUM.EstadoLivro;
-
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-
 public class Livro {
     private String titulo;
-    private String isbn;
-    private EstadoLivro estado;  // Usando o enum EstadoLivro para controlar o estado do livro
     private Autor autor;
-    private List<Emprestimo> listaEmprestimos;
-
-    // Construtor com estado inicial DISPONIVEL
-    public Livro(String titulo, String isbn, Autor autor) {
-        this.titulo = titulo;
-        this.isbn = isbn;
-        this.estado = EstadoLivro.DISPONIVEL;  // Inicia como disponível
-        this.autor = autor;
-        this.listaEmprestimos = new ArrayList<>();
-    }
+    private String isbn;
+    private boolean disponivel;
 
     // Construtor padrão
-    public Livro() {
-        this.titulo = "";
-        this.isbn = "";
-        this.estado = EstadoLivro.DISPONIVEL;  // Inicia como disponível
-        this.autor = new Autor();
-        this.listaEmprestimos = new ArrayList<>();
+    public Livro() {}
+
+    // Construtor com argumentos
+    public Livro(String titulo, Autor autor, String isbn) {
+        this.titulo = titulo;
+        this.autor = autor;
+        this.isbn = isbn;
+        this.disponivel = true; // Por padrão, o livro está disponível
     }
 
-    // Getters e setters
+    // Getters e Setters
     public String getTitulo() {
         return titulo;
     }
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
-    }
-
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-
-    public EstadoLivro getEstado() {
-        return estado;
-    }
-
-    public void setEstado(EstadoLivro estado) {
-        this.estado = estado;
     }
 
     public Autor getAutor() {
@@ -64,41 +34,35 @@ public class Livro {
         this.autor = autor;
     }
 
-    public List<Emprestimo> getListaEmprestimos() {
-        return listaEmprestimos;
+    public String getIsbn() {
+        return isbn;
     }
 
-    // Método para emprestar livro
-    public void emprestarLivro(Emprestimo emprestimo) {
-        if (this.estado == EstadoLivro.DISPONIVEL) {
-            this.listaEmprestimos.add(emprestimo);
-            setEstado(EstadoLivro.EMPRESTADO);  // Altera estado para EMPRESTADO
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
+    public boolean isDisponivel() {
+        return disponivel;
+    }
+
+    // Métodos para emprestar e devolver o livro
+    public void emprestarLivro() {
+        if (disponivel) {
+            disponivel = false;
+            System.out.println("O livro '" + titulo + "' foi emprestado.");
         } else {
-            System.out.println("Livro não está disponível para empréstimo.");
+            System.out.println("O livro '" + titulo + "' não está disponível.");
         }
     }
 
-    // Método para devolver livro
-    public void devolverLivro(Emprestimo emprestimo) {
-        if (this.estado == EstadoLivro.EMPRESTADO) {
-            emprestimo.setDateTimeDevolucao(LocalDateTime.now());  // Define a data de devolução
-            setEstado(EstadoLivro.DISPONIVEL);  // Altera o estado para DISPONIVEL
-        } else {
-            System.out.println("Livro já está disponível.");
-        }
+    public void devolverLivro() {
+        disponivel = true;
+        System.out.println("O livro '" + titulo + "' foi devolvido.");
     }
 
-    // Verificar disponibilidade do livro
-    public String verificarDisponibilidade() {
-        if (this.estado == EstadoLivro.DISPONIVEL) {
-            return "Livro disponível" +
-                    "\nAutor: " + getAutor().getNome();
-        } else {
-            Emprestimo ultimoEmprestimo = getListaEmprestimos().get(getListaEmprestimos().size() - 1);  // Último empréstimo
-            return "Livro indisponível" +
-                    "\nAutor: " + getAutor().getNome() +
-                    "\nLocado pela última vez em: " + ultimoEmprestimo.getDateTimeEmprestimo() +
-                    "\nPor: " + ultimoEmprestimo.getQuemEmprestou().getId();
-        }
+    @Override
+    public String toString() {
+        return "Título: " + titulo + ", Autor: " + autor.getNome() + ", ISBN: " + isbn + ", Disponível: " + (disponivel ? "Sim" : "Não");
     }
 }

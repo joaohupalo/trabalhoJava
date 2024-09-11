@@ -1,29 +1,21 @@
 package model;
 
-
-import java.time.LocalDate;
-
 public class Autor {
-
-    // Attributes
     private String nome;
     private String nacionalidade;
-    private LocalDate dataNascimento;
+    private String dataNascimento;
 
-    // Contructors
-    public Autor () {
-        nome = "";
-        nacionalidade = "";
-        dataNascimento = null;
-    }
+    // Construtor padrão
+    public Autor() {}
 
-    public Autor(String nome, String nacionalidade, LocalDate dataNascimento) {
+    // Construtor com argumentos
+    public Autor(String nome, String nacionalidade, String dataNascimento) {
         this.nome = nome;
         this.nacionalidade = nacionalidade;
         this.dataNascimento = dataNascimento;
     }
 
-    // Getters and Setters
+    // Getters e Setters
     public String getNome() {
         return nome;
     }
@@ -40,20 +32,16 @@ public class Autor {
         this.nacionalidade = nacionalidade;
     }
 
-    public LocalDate getDataNascimento() {
+    public String getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(LocalDate dataNascimento) {
+    public void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
     @Override
     public String toString() {
-        return "Autor{" +
-                "nome='" + nome + '\'' +
-                ", nacionalidade='" + nacionalidade + '\'' +
-                ", dataNascimento=" + dataNascimento +
-                '}';
+        return "Autor: " + nome + ", Nacionalidade: " + nacionalidade + ", Nascimento: " + dataNascimento;
     }
 }

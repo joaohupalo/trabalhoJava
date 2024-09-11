@@ -1,43 +1,27 @@
 package model;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Membro {
-    private Integer id;
+public abstract class Membro {
     private String nome;
-    private LocalDate dataNascimento;
-    private List <Emprestimo> listaEmprestimos;
-    private String CPF;
+    private int idMembro;
+    private List<Livro> historicoEmprestimos;
 
-    // Construtores
+    // Construtor padrão
     public Membro() {
-        id = 0;
-        nome = "";
-        this.listaEmprestimos = new ArrayList<>();
-        this.dataNascimento = null;
-        this.CPF = "";
+        this.historicoEmprestimos = new ArrayList<>();
     }
 
-    public Membro(Integer id, String nome, LocalDate dataNascimento, String CPF) {
-        this.id = id;
+    // Construtor com argumentos
+    public Membro(String nome, int idMembro) {
         this.nome = nome;
-        this.listaEmprestimos = new ArrayList<>();
-        this.dataNascimento = dataNascimento;
-        this.CPF = CPF;
+        this.idMembro = idMembro;
+        this.historicoEmprestimos = new ArrayList<>();
     }
 
-    // getters and setters
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
+    // Getters e Setters
     public String getNome() {
         return nome;
     }
@@ -46,29 +30,32 @@ public class Membro {
         this.nome = nome;
     }
 
-    public LocalDate getDataNascimento() {
-        return dataNascimento;
+    public int getIdMembro() {
+        return idMembro;
     }
 
-    public void setDataNascimento(LocalDate dataNascimento) {
-        this.dataNascimento = dataNascimento;
+    public void setIdMembro(int idMembro) {
+        this.idMembro = idMembro;
     }
 
-    public String getCPF() {
-        return CPF;
+    public List<Livro> getHistoricoEmprestimos() {
+        return historicoEmprestimos;
     }
 
-    public void setCPF(String CPF) {
-        this.CPF = CPF;
+    // Método para adicionar livro ao histórico de empréstimos
+    public void registrarEmprestimo(Livro livro) {
+        historicoEmprestimos.add(livro);
+        livro.emprestarLivro();
     }
 
-    public List<Emprestimo> getListaEmprestimos() {
-        return listaEmprestimos;
+    // Método para registrar a devolução do livro
+    public void registrarDevolucao(Livro livro) {
+        historicoEmprestimos.remove(livro);
+        livro.devolverLivro();
     }
 
-    // Método para adicionar um empréstimo à lista
-    // unica forma de muta a lista de empréstimos
-    public void addEmprestimo(Emprestimo emprestimo) {
-        this.listaEmprestimos.add(emprestimo);
+    @Override
+    public String toString() {
+        return "Membro: " + nome + ", ID: " + idMembro;
     }
 }

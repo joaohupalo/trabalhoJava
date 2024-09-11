@@ -1,41 +1,24 @@
 package model;
 
-import java.time.LocalDate;
+public class Professor extends Membro {
+    private String departamento;
 
-public class Professor extends Membro{
-    private String curso;
-
-    // Construtores
-    public Professor() {
-        super();
-        this.curso = "";
+    public Professor(String nome, int idMembro, String departamento) {
+        super(nome, idMembro);
+        this.departamento = departamento;
     }
 
-    public Professor(Integer id, String nome, LocalDate dataNascimento, String CPF, String curso) {
-        super(id, nome, dataNascimento, CPF);
-        this.curso = curso;
+    // Getter e Setter
+    public String getDepartamento() {
+        return departamento;
     }
 
-    // Getters and Setters
-    public String getCurso() {
-        return curso;
+    public void setDepartamento(String departamento) {
+        this.departamento = departamento;
     }
-
-    public void setCurso(String curso) {
-        this.curso = curso;
-    }
-
-    // toString do obj professor
 
     @Override
     public String toString() {
-        return "Professor{" +
-                "id=" + getId() +
-                ", nome='" + getNome() + '\'' +
-                ", dataNascimento=" + getDataNascimento() +
-                ", CPF='" + getCPF() + '\'' +
-                ", curso='" + getCurso() + '\'' +
-                '}';
+        return super.toString() + ", Departamento: " + departamento;
     }
-
 }
