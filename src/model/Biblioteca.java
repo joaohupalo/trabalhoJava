@@ -95,17 +95,38 @@ public class Biblioteca {
         }
     }
 
+    public Livro buscarLivroPorISBN(String isbn) {
+        for (Livro livro : livros) {  // Assumindo que 'livros' é a lista de livros da biblioteca
+            if (livro.getIsbn().equals(isbn)) {
+                return livro;
+            }
+        }
+        return null;  // Retorna null se o livro não for encontrado
+    }
+
+    public Membro buscarMembroPorId(int idMembro) {
+        for (Membro membro : membros) {  // Assumindo que 'membros' é a lista de membros da biblioteca
+            if (membro.getIdMembro() == idMembro) {
+                return membro;
+            }
+        }
+        return null;  // Retorna null se o membro não for encontrado
+    }
+
+
     // Listar livros de um autor específico
-    public void listarLivrosPorAutor(Autor autor) {
+    public void listarLivrosPorAutor(String nomeAutor) {
         boolean encontrou = false;
         for (Livro livro : livros) {
-            if (livro.getAutor().equals(autor)) {
+            System.out.println("Verificando o autor: " + livro.getAutor().getNome());  // Adicionado para debug
+            if (livro.getAutor().getNome().equalsIgnoreCase(nomeAutor)) {
                 System.out.println(livro);
                 encontrou = true;
             }
         }
+
         if (!encontrou) {
-            System.out.println("Nenhum livro encontrado para o autor: " + autor.getNome());
+            System.out.println("Nenhum livro encontrado para o autor: " + nomeAutor);
         }
     }
 }

@@ -12,7 +12,6 @@ public class Main {
         Biblioteca biblioteca = new Biblioteca();
         Scanner scanner = new Scanner(System.in);
 
-        // Povoar a biblioteca antes de iniciar a interação com o usuário
         povoarBiblioteca(biblioteca);
 
         boolean continuar = true;
@@ -24,7 +23,10 @@ public class Main {
                 System.out.println("2. Listar Livros");
                 System.out.println("3. Adicionar Membro");
                 System.out.println("4. Listar Membros");
-                System.out.println("5. Sair");
+                System.out.println("5. Emprestar Livro");
+                System.out.println("6. Devolver Livro");
+                System.out.println("7. Listar Livros por Autor");
+                System.out.println("8. Sair");
                 System.out.print("Escolha uma opção: ");
                 int opcao = scanner.nextInt();
                 scanner.nextLine(); // Consumir nova linha
@@ -33,24 +35,28 @@ public class Main {
                     case 1:
                         adicionarLivro(biblioteca, scanner);
                         break;
-
                     case 2:
                         biblioteca.listarLivros();
                         break;
-
                     case 3:
                         adicionarMembro(biblioteca, scanner);
                         break;
-
                     case 4:
                         biblioteca.listarMembros();
                         break;
-
                     case 5:
+                        emprestarLivro(biblioteca, scanner);
+                        break;
+                    case 6:
+                        devolverLivro(biblioteca, scanner);
+                        break;
+                    case 7:
+                        listarLivrosPorAutor(biblioteca, scanner);
+                        break;
+                    case 8:
                         continuar = false;
                         System.out.println("Saindo do sistema...");
                         break;
-
                     default:
                         System.out.println("Opção inválida! Tente novamente.");
                         break;
@@ -62,6 +68,7 @@ public class Main {
         }
         scanner.close(); // Fechar o scanner ao final
     }
+
 
     // Função para pré-povoar a biblioteca com dados iniciais
     public static void povoarBiblioteca(Biblioteca biblioteca) {
@@ -88,6 +95,12 @@ public class Main {
         System.out.println("Biblioteca populada com dados iniciais!");
     }
 
+    public static void listarLivrosPorAutor(Biblioteca biblioteca, Scanner scanner) {
+        System.out.print("Digite o nome do autor: ");
+        String nomeAutor = scanner.nextLine();
+        biblioteca.listarLivrosPorAutor(nomeAutor);
+    }
+
 
     // Função para adicionar livro
     public static void adicionarLivro(Biblioteca biblioteca, Scanner scanner) {
@@ -110,6 +123,50 @@ public class Main {
             System.out.println("Livro adicionado com sucesso!");
         } catch (Exception e) {
             System.out.println("Erro ao adicionar o livro. Por favor, tente novamente.");
+        }
+    }
+
+    public static void emprestarLivro(Biblioteca biblioteca, Scanner scanner) {
+        try {
+            System.out.print("ID do Membro: ");
+            int idMembro = scanner.nextInt();
+            scanner.nextLine(); // Consumir nova linha
+
+            System.out.print("ISBN do Livro: ");
+            String isbn = scanner.nextLine();
+
+            Livro livro = biblioteca.buscarLivroPorISBN(isbn);
+            Membro membro = biblioteca.buscarMembroPorId(idMembro);
+
+            if (livro != null && membro != null) {
+                membro.registrarEmprestimo(livro);
+            } else {
+                System.out.println("Livro ou Membro não encontrado.");
+            }
+        } catch (Exception e) {
+            System.out.println("Erro ao emprestar livro. Verifique os dados e tente novamente.");
+        }
+    }
+
+    public static void devolverLivro(Biblioteca biblioteca, Scanner scanner) {
+        try {
+            System.out.print("ID do Membro: ");
+            int idMembro = scanner.nextInt();
+            scanner.nextLine(); // Consumir nova linha
+
+            System.out.print("ISBN do Livro: ");
+            String isbn = scanner.nextLine();
+
+            Livro livro = biblioteca.buscarLivroPorISBN(isbn);
+            Membro membro = biblioteca.buscarMembroPorId(idMembro);
+
+            if (livro != null && membro != null) {
+                membro.registrarDevolucao(livro);
+            } else {
+                System.out.println("Livro ou Membro não encontrado.");
+            }
+        } catch (Exception e) {
+            System.out.println("Erro ao devolver livro. Verifique os dados e tente novamente.");
         }
     }
 
