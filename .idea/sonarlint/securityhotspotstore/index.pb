@@ -20,3 +20,5 @@ I
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
 N
 src/model/ENUM/TipoMembro.java,a\a\aa1831ec4e1876b32f2b7254810e4997393eafde
+=
+src/README.md,8\3\83aa3445a7f65c488e8ccd0a5ad0e80c174dc329
