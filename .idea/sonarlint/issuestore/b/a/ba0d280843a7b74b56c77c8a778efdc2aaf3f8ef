@@ -1,6 +1,5 @@
 
-’
-java:S11925"JDefine a constant instead of duplicating this literal "O livro '" 3 times.(Š¿™òşÿÿÿÿ8Ş©Öö2J$660e7dc7-bb44-4072-b96d-653599e6210e
-r	java:S1065"+Replace this use of System.out by a logger.(Š¿™òşÿÿÿÿ8ì©Öö2J$9896bbe5-1323-43b1-b4c8-b4800958b849
-r	java:S1067"+Replace this use of System.out by a logger.(¢×üöúÿÿÿÿ8í©Öö2J$46a3f1a6-c362-4b1d-bec7-357432b250b6
-m	java:S106="+Replace this use of System.out by a logger.(–‡‡Ô8í©Öö2J$d8112a57-5acd-4ba5-bdb4-04146ae89e83
+l
+java:S1192="JDefine a constant instead of duplicating this literal "O livro '" 4 times.(Ìè·óıÿÿÿÿ8¯ÕË¹ 2
+L	java:S106@"+Replace this use of System.out by a logger.(Š¿™òşÿÿÿÿ8úÕË¹ 2
+G	java:S106I"+Replace this use of System.out by a logger.(–‡‡Ô8şÕË¹ 2

@@ -9,20 +9,23 @@ public class Livro {
     // Construtor padrão
     public Livro() {}
 
-    // Construtor com argumentos
+    // Construtor com validações
     public Livro(String titulo, Autor autor, String isbn) {
-        this.titulo = titulo;
-        this.autor = autor;
-        this.isbn = isbn;
-        this.disponivel = true; // Por padrão, o livro está disponível
+        setTitulo(titulo);
+        setAutor(autor);
+        setIsbn(isbn);
+        this.disponivel = true; // Livro é inicialmente disponível
     }
 
-    // Getters e Setters
+    // Getters e Setters com validação
     public String getTitulo() {
         return titulo;
     }
 
     public void setTitulo(String titulo) {
+        if (titulo == null || titulo.trim().isEmpty()) {
+            throw new IllegalArgumentException("Título não pode ser nulo ou vazio.");
+        }
         this.titulo = titulo;
     }
 
@@ -31,6 +34,9 @@ public class Livro {
     }
 
     public void setAutor(Autor autor) {
+        if (autor == null) {
+            throw new IllegalArgumentException("Autor não pode ser nulo.");
+        }
         this.autor = autor;
     }
 
@@ -39,6 +45,9 @@ public class Livro {
     }
 
     public void setIsbn(String isbn) {
+        if (isbn == null || isbn.trim().isEmpty()) {
+            throw new IllegalArgumentException("ISBN não pode ser nulo ou vazio.");
+        }
         this.isbn = isbn;
     }
 
@@ -46,17 +55,20 @@ public class Livro {
         return disponivel;
     }
 
-    // Métodos para emprestar e devolver o livro
+    // Método para emprestar livro
     public void emprestarLivro() {
-        if (disponivel) {
-            disponivel = false;
-            System.out.println("O livro '" + titulo + "' foi emprestado.");
-        } else {
-            System.out.println("O livro '" + titulo + "' não está disponível.");
+        if (!disponivel) {
+            throw new IllegalStateException("O livro '" + titulo + "' já está emprestado.");
         }
+        disponivel = false;
+        System.out.println("O livro '" + titulo + "' foi emprestado.");
     }
 
+    // Método para devolver livro
     public void devolverLivro() {
+        if (disponivel) {
+            throw new IllegalStateException("O livro '" + titulo + "' já está disponível.");
+        }
         disponivel = true;
         System.out.println("O livro '" + titulo + "' foi devolvido.");
     }

@@ -11,12 +11,8 @@ H
 src/model/Professor.java,c\9\c9fedc4d51a5289362d38ffa477f65c40eed07c7
 I
 src/model/Emprestimo.java,7\9\79af721326d8c4bb13a15816e33367fde66fac0c
-J
-src/model/TesteLivros.java,6\9\69ccb847761ac82dafd8413edeaeff1e3ee23fd8
 B
 src/view/Main.java,6\a\6a797d831c147f047b4dda41944e9e0bc35e26a4
-O
-src/model/ENUM/EstadoLivro.java,3\b\3b3a0078201c8a2c010ec817d7b1e8f3ebef12ec
 I
 src/model/Biblioteca.java,9\8\98e7301a1dcaa6234e38105385adfc048e9774d7
 :

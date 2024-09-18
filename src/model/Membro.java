@@ -1,8 +1,6 @@
 package model;
 
-
 import model.ENUM.TipoMembro;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,19 +14,22 @@ public abstract class Membro {
         this.historicoEmprestimos = new ArrayList<>();
     }
 
-    // Construtor com argumentos
+    // Construtor com validação
     public Membro(String nome, int idMembro) {
-        this.nome = nome;
-        this.idMembro = idMembro;
+        setNome(nome);
+        setIdMembro(idMembro);
         this.historicoEmprestimos = new ArrayList<>();
     }
 
-    // Getters e Setters
+    // Getters e Setters com validação
     public String getNome() {
         return nome;
     }
 
     public void setNome(String nome) {
+        if (nome == null || nome.trim().isEmpty()) {
+            throw new IllegalArgumentException("Nome não pode ser nulo ou vazio.");
+        }
         this.nome = nome;
     }
 
@@ -37,27 +38,46 @@ public abstract class Membro {
     }
 
     public void setIdMembro(int idMembro) {
+        if (idMembro <= 0) {
+            throw new IllegalArgumentException("ID do Membro deve ser maior que zero.");
+        }
         this.idMembro = idMembro;
     }
 
     public List<Livro> getHistoricoEmprestimos() {
-        return historicoEmprestimos;
+        return new ArrayList<>(historicoEmprestimos); // Cópia defensiva
     }
 
-    // Método para adicionar livro ao histórico de empréstimos
+    // Método para registrar empréstimo de um livro
     public void registrarEmprestimo(Livro livro) {
+        if (livro == null || !livro.isDisponivel()) {
+            throw new IllegalArgumentException("O livro não pode ser nulo e deve estar disponível.");
+        }
         historicoEmprestimos.add(livro);
         livro.emprestarLivro();
     }
 
     // Método para registrar a devolução do livro
     public void registrarDevolucao(Livro livro) {
+        if (livro == null || !historicoEmprestimos.contains(livro)) {
+            throw new IllegalArgumentException("Este livro não está registrado no histórico de empréstimos.");
+        }
         historicoEmprestimos.remove(livro);
         livro.devolverLivro();
     }
 
-    // Função estática para criar membros usando enum TipoMembro
+    // Função estática para criar membros com base no TipoMembro
     public static Membro criarMembro(String nome, int id, TipoMembro tipo, String atributoEspecifico) {
+        if (nome == null || nome.trim().isEmpty()) {
+            throw new IllegalArgumentException("Nome não pode ser nulo ou vazio.");
+        }
+        if (id <= 0) {
+            throw new IllegalArgumentException("ID do Membro deve ser maior que zero.");
+        }
+        if (atributoEspecifico == null || atributoEspecifico.trim().isEmpty()) {
+            throw new IllegalArgumentException("Atributo específico não pode ser nulo ou vazio.");
+        }
+
         switch (tipo) {
             case ESTUDANTE:
                 return new Estudante(nome, id, atributoEspecifico); // atributoEspecifico será o curso
