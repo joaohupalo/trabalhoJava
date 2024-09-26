@@ -2,8 +2,6 @@
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
-.idea
-bibliotecaControle.iml
 
 ### Eclipse ###
 .apt_generated
