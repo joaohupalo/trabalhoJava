@@ -1,10 +1,10 @@
-package view;
-
-
 import model.*;
 import model.ENUM.TipoMembro;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -26,7 +26,9 @@ public class Main {
                 System.out.println("5. Emprestar Livro");
                 System.out.println("6. Devolver Livro");
                 System.out.println("7. Listar Livros por Autor");
-                System.out.println("8. Sair");
+                System.out.println("8. Verificar Disponibilidade de Livro");
+                System.out.println("9. Ver Histórico de Empréstimos do Membro");
+                System.out.println("10. Sair");
                 System.out.print("Escolha uma opção: ");
                 int opcao = scanner.nextInt();
                 scanner.nextLine(); // Consumir nova linha
@@ -54,6 +56,12 @@ public class Main {
                         listarLivrosPorAutor(biblioteca, scanner);
                         break;
                     case 8:
+                        verificarDisponibilidadeLivro(biblioteca, scanner);
+                        break;
+                    case 9:
+                        verHistoricoEmprestimosMembro(biblioteca, scanner);
+                        break;
+                    case 10:
                         continuar = false;
                         System.out.println("Saindo do sistema...");
                         break;
@@ -69,8 +77,6 @@ public class Main {
         scanner.close(); // Fechar o scanner ao final
     }
 
-
-    // Função para pré-povoar a biblioteca com dados iniciais
     public static void povoarBiblioteca(Biblioteca biblioteca) {
         // Criando autores
         Autor autor1 = new Autor("George Orwell", "Britânico", "25/06/1903");
@@ -84,7 +90,7 @@ public class Main {
         biblioteca.adicionarLivro(livro1);
         biblioteca.adicionarLivro(livro2);
 
-        // Criando membros (Estudantes e Professores)
+        // Criando membros
         Membro estudante1 = Membro.criarMembro("Alice", 1, TipoMembro.ESTUDANTE, "Ciência da Computação");
         Membro professor1 = Membro.criarMembro("Dr. João", 2, TipoMembro.PROFESSOR, "Física");
 
@@ -95,14 +101,6 @@ public class Main {
         System.out.println("Biblioteca populada com dados iniciais!");
     }
 
-    public static void listarLivrosPorAutor(Biblioteca biblioteca, Scanner scanner) {
-        System.out.print("Digite o nome do autor: ");
-        String nomeAutor = scanner.nextLine();
-        biblioteca.listarLivrosPorAutor(nomeAutor);
-    }
-
-
-    // Função para adicionar livro
     public static void adicionarLivro(Biblioteca biblioteca, Scanner scanner) {
         try {
             System.out.print("Título: ");
@@ -111,8 +109,12 @@ public class Main {
             String nomeAutor = scanner.nextLine();
             System.out.print("Nacionalidade do Autor: ");
             String nacionalidade = scanner.nextLine();
-            System.out.print("Data de Nascimento do Autor: ");
+            System.out.print("Data de Nascimento do Autor (dd/mm/yyyy): ");
             String dataNascimento = scanner.nextLine();
+            if (!validarData(dataNascimento)) {
+                throw new IllegalArgumentException("Formato de data inválido. Use o formato dd/mm/yyyy.");
+            }
+
             Autor autor = new Autor(nomeAutor, nacionalidade, dataNascimento);
 
             System.out.print("ISBN: ");
@@ -121,56 +123,13 @@ public class Main {
             Livro livro = new Livro(titulo, autor, isbn);
             biblioteca.adicionarLivro(livro);
             System.out.println("Livro adicionado com sucesso!");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Erro: " + e.getMessage());
         } catch (Exception e) {
             System.out.println("Erro ao adicionar o livro. Por favor, tente novamente.");
         }
     }
 
-    public static void emprestarLivro(Biblioteca biblioteca, Scanner scanner) {
-        try {
-            System.out.print("ID do Membro: ");
-            int idMembro = scanner.nextInt();
-            scanner.nextLine(); // Consumir nova linha
-
-            System.out.print("ISBN do Livro: ");
-            String isbn = scanner.nextLine();
-
-            Livro livro = biblioteca.buscarLivroPorISBN(isbn);
-            Membro membro = biblioteca.buscarMembroPorId(idMembro);
-
-            if (livro != null && membro != null) {
-                membro.registrarEmprestimo(livro);
-            } else {
-                System.out.println("Livro ou Membro não encontrado.");
-            }
-        } catch (Exception e) {
-            System.out.println("Erro ao emprestar livro. Verifique os dados e tente novamente.");
-        }
-    }
-
-    public static void devolverLivro(Biblioteca biblioteca, Scanner scanner) {
-        try {
-            System.out.print("ID do Membro: ");
-            int idMembro = scanner.nextInt();
-            scanner.nextLine(); // Consumir nova linha
-
-            System.out.print("ISBN do Livro: ");
-            String isbn = scanner.nextLine();
-
-            Livro livro = biblioteca.buscarLivroPorISBN(isbn);
-            Membro membro = biblioteca.buscarMembroPorId(idMembro);
-
-            if (livro != null && membro != null) {
-                membro.registrarDevolucao(livro);
-            } else {
-                System.out.println("Livro ou Membro não encontrado.");
-            }
-        } catch (Exception e) {
-            System.out.println("Erro ao devolver livro. Verifique os dados e tente novamente.");
-        }
-    }
-
-    // Função para adicionar membro
     public static void adicionarMembro(Biblioteca biblioteca, Scanner scanner) {
         try {
             System.out.print("Nome do Membro: ");
@@ -194,14 +153,120 @@ public class Main {
                 Professor professor = new Professor(nome, idMembro, departamento);
                 biblioteca.adicionarMembro(professor);
             } else {
-                System.out.println("Tipo de membro inválido.");
+                throw new IllegalArgumentException("Tipo de membro inválido. Escolha 1 para Estudante ou 2 para Professor.");
             }
             System.out.println("Membro adicionado com sucesso!");
         } catch (InputMismatchException e) {
-            System.out.println("Erro de entrada. Verifique os dados e tente novamente.");
+            System.out.println("Erro de entrada. Certifique-se de digitar um número válido.");
             scanner.nextLine(); // Limpar entrada inválida
+        } catch (IllegalArgumentException e) {
+            System.out.println("Erro: " + e.getMessage());
         } catch (Exception e) {
             System.out.println("Erro ao adicionar membro. Por favor, tente novamente.");
+        }
+    }
+
+    public static void emprestarLivro(Biblioteca biblioteca, Scanner scanner) {
+        try {
+            System.out.print("ID do Membro: ");
+            int idMembro = scanner.nextInt();
+            scanner.nextLine(); // Consumir nova linha
+
+            System.out.print("ISBN do Livro: ");
+            String isbn = scanner.nextLine();
+
+            Livro livro = biblioteca.buscarLivroPorISBN(isbn);
+            Membro membro = biblioteca.buscarMembroPorId(idMembro);
+
+            if (livro != null && membro != null) {
+                if (livro.isDisponivel()) {
+                    membro.registrarEmprestimo(livro);
+                    System.out.println("Empréstimo realizado com sucesso.");
+                } else {
+                    System.out.println("O livro não está disponível para empréstimo.");
+                }
+            } else {
+                System.out.println("Livro ou Membro não encontrado.");
+            }
+        } catch (Exception e) {
+            System.out.println("Erro ao emprestar livro. Verifique os dados e tente novamente.");
+        }
+    }
+
+    public static void devolverLivro(Biblioteca biblioteca, Scanner scanner) {
+        try {
+            System.out.print("ID do Membro: ");
+            int idMembro = scanner.nextInt();
+            scanner.nextLine(); // Consumir nova linha
+
+            System.out.print("ISBN do Livro: ");
+            String isbn = scanner.nextLine();
+
+            Livro livro = biblioteca.buscarLivroPorISBN(isbn);
+            Membro membro = biblioteca.buscarMembroPorId(idMembro);
+
+            if (livro != null && membro != null) {
+                membro.registrarDevolucao(livro);
+                System.out.println("Devolução realizada com sucesso.");
+            } else {
+                System.out.println("Livro ou Membro não encontrado.");
+            }
+        } catch (Exception e) {
+            System.out.println("Erro ao devolver livro. Verifique os dados e tente novamente.");
+        }
+    }
+
+    // Função para validar data no formato dd/MM/yyyy
+    public static boolean validarData(String data) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        sdf.setLenient(false);
+        try {
+            sdf.parse(data);
+            return true;
+        } catch (ParseException e) {
+            return false;
+        }
+    }
+
+    public static void listarLivrosPorAutor(Biblioteca biblioteca, Scanner scanner) {
+        System.out.print("Digite o nome do autor: ");
+        String nomeAutor = scanner.nextLine();
+        biblioteca.listarLivrosPorAutor(nomeAutor);
+    }
+
+    public static void verificarDisponibilidadeLivro(Biblioteca biblioteca, Scanner scanner) {
+        System.out.print("Digite o ISBN do livro: ");
+        String isbn = scanner.nextLine();
+        Livro livro = biblioteca.buscarLivroPorISBN(isbn);
+        if (livro != null) {
+            if (livro.isDisponivel()) {
+                System.out.println("O livro está disponível.");
+            } else {
+                System.out.println("O livro está emprestado.");
+            }
+        } else {
+            System.out.println("Livro não encontrado.");
+        }
+    }
+
+    public static void verHistoricoEmprestimosMembro(Biblioteca biblioteca, Scanner scanner) {
+        System.out.print("ID do Membro: ");
+        int idMembro = scanner.nextInt();
+        scanner.nextLine(); // Consumir nova linha
+        Membro membro = biblioteca.buscarMembroPorId(idMembro);
+
+        if (membro != null) {
+            List<Livro> historico = membro.getHistoricoEmprestimos();
+            if (historico.isEmpty()) {
+                System.out.println("Nenhum empréstimo registrado.");
+            } else {
+                System.out.println("Histórico de Empréstimos:");
+                for (Livro livro : historico) {
+                    System.out.println(livro.getTitulo());
+                }
+            }
+        } else {
+            System.out.println("Membro não encontrado.");
         }
     }
 }
